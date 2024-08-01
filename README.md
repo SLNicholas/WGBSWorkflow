@@ -103,22 +103,18 @@ Trimmomatic: For read trimming.
 Bismark: For alignment.
 Bowtie2: Required by Bismark for alignment.
 R (>= 4.0): For running the package functions.
-Structure
+
+# Structure
 R/: Contains R scripts with function definitions.
 inst/: Includes configuration files and additional resources.
 man/: Contains documentation files for the package functions.
 DESCRIPTION: Package metadata and dependencies.
 NAMESPACE: Lists the functions to be exported.
-Contributing
-Contributions are welcome! Please fork the repository and submit a pull request with your changes. For bug reports and feature requests, open an issue on the GitHub repository.
-
-## License
-This package is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contact
 For any inquiries, please contact the package author:
 
-Sarah Nicholas - sarah.nicholas@example.com
+Sarah Nicholas - sarahlnicholas21@gmail.com
 
 
 
