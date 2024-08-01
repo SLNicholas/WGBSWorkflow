@@ -24,7 +24,7 @@
 1. **Branches**:
    - `main`: The primary branch containing the stable version of the package.
    - `dev`: A development branch for ongoing work and feature additions.
-   - `feature/<feature-name>`: Branches for specific features or updates.
+   - `functions`: Branches for specific functions features or updates.
    - `bugfix/<issue-number>`: Branches for fixing bugs.
 
 2. **Directory Structure**:
