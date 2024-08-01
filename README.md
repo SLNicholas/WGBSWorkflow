@@ -15,4 +15,4 @@ To install the **WGBSWorkflow** package from GitHub, use the following commands:
 install.packages("devtools")
 
 # Install WGBSWorkflow from GitHub
-devtools::install_github("your-username/WGBSWorkflow")
+devtools::install_github("SLNicholas/WGBSWorkflow")
