@@ -10,7 +10,7 @@
 
 - **Trim Reads**: Use Trimmomatic to preprocess raw sequencing reads.
 - **Align Reads**: Perform alignment with Bismark, utilizing Bowtie2 as the underlying aligner.
-- **Convert Data**: Facilitate conversion of processed data into VCF format suitable for epigenetic analysis.
+- **Convert Data**: Facilitate conversion of processed data into format suitable for epigenetic analysis.
 
 ### Dependencies
 
