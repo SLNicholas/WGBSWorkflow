@@ -15,8 +15,9 @@
 ### Dependencies
 
 - **Trimmomatic**: Automatically downloaded and used for trimming.
-- **Bismark**: Requires installation for alignment.
+- **Bismark**: Automatically downloaded. Requires installation for alignment.
 - **Bowtie2**: Needed by Bismark for alignment.
+- **CGMaptools**: Automatically downloaded. Needed for conversion 
 - **R (>= 4.0)**: Ensures compatibility with the package functions.
 
 ### GitHub Page Structure
