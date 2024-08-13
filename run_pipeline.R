@@ -20,13 +20,8 @@
 #' @param bowtie2_dir Path to the Bowtie2 directory.
 #' @param is_paired Boolean indicating paired-end sequencing. Default is FALSE.
 #' @param mate_file Path to the mate file for paired-end sequencing. Default is NULL.
-#' @param tool The CGMapTools script to run. Default is "CGmapStatMeth.py".
-#' @param perl_path Path to the Perl executable. Default is "perl".
-#' @param python_path Path to the Python executable. Default is "python".
-#' @param cgmaptools_version The version of CGMapTools to download. Default is "v0.1.0".
-#' @param cgmaptools_dest_dir Directory to download and unzip CGMapTools. Default is "CGMapTools".
-#' @param is_bam Logical. If TRUE, converts a BAM file to CGmap. Default is FALSE.
-#' @param is_bismark Logical. If TRUE, uses Bismark-specific conversion. Default is FALSE.
+#' @param cgmaptools_dir Path to the CGMapTools installation directory.
+#' @param genome_file Path to the reference genome FASTA file used for alignment.
 #'
 #' @return Path to the final output file from CGMapTools.
 #' @export
@@ -35,7 +30,8 @@
 #' \dontrun{
 #'   run_pipeline("/path/to/input.fastq", "/path/to/output/trimmed", "/path/to/output/bismark",
 #'                "/path/to/output/cgmaptools", genome_folder = "/path/to/genome/folder",
-#'                bismark_dir = "/path/to/bismark", bowtie2_dir = "/path/to/bowtie2")
+#'                bismark_dir = "/path/to/bismark", bowtie2_dir = "/path/to/bowtie2",
+#'                cgmaptools_dir = "/path/to/cgmaptools", genome_file = "/path/to/genome.fa")
 #' }
 run_pipeline <- function(input_fastq, output_fastq_dir, output_bismark_dir, output_cgmap_dir,
                          trimmomatic_url = "http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip",
@@ -43,9 +39,7 @@ run_pipeline <- function(input_fastq, output_fastq_dir, output_bismark_dir, outp
                          adapter_url = "https://github.com/timflutre/trimmomatic/blob/master/adapters/TruSeq3-SE.fa?raw=true",
                          leading = 3, trailing = 3, slidingwindow = "4:15", minlen = 36, phred = "phred33",
                          genome_folder, bismark_dir, bowtie2_dir, is_paired = FALSE, mate_file = NULL,
-                         tool = "CGmapStatMeth.py", perl_path = "perl", python_path = "python",
-                         cgmaptools_version = "v0.1.0", cgmaptools_dest_dir = "CGMapTools",
-                         is_bam = FALSE, is_bismark = FALSE) {
+                         cgmaptools_dir, genome_file) {
 
   # Step 1: Trim reads using trim_reads function
   trimmed_fastq <- trim_reads(input_fastq, output_fastq_dir,
@@ -62,14 +56,16 @@ run_pipeline <- function(input_fastq, output_fastq_dir, output_bismark_dir, outp
 
   cat("Bismark output file:", bismark_output, "\n")
 
-  # Step 3: Run CGMapTools analysis using run_CGMapTools function
-  cgmaptools_output <- run_CGMapTools(bismark_output, output_cgmap_dir,
-                                      tool = tool, perl_path = perl_path, python_path = python_path,
-                                      cgmaptools_version = cgmaptools_version,
-                                      dest_dir = cgmaptools_dest_dir, is_bam = TRUE, is_bismark = TRUE)
+  # Step 3: Run CGMapTools analysis using the revised run_CGMapTools function
+  cgmap_file <- run_CGMapTools(
+    input_file = bismark_output,
+    output_dir = output_cgmap_dir,
+    cgmaptools_dir = cgmaptools_dir,
+    genome_file = genome_file
+  )
 
-  cat("CGMapTools output file:", cgmaptools_output, "\n")
+  cat("CGMapTools output file:", cgmap_file, "\n")
 
   # Return the final output file from CGMapTools
-  return(cgmaptools_output)
+  return(cgmap_file)
 }
