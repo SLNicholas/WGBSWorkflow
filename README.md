@@ -88,15 +88,23 @@ Convets BAM, generated from previous Bismark or CGMap files and produces the vcf
 
 # Usage
 ```r
-# Example usage with a BAM file
-result_bam <- run_CGMapTools("path/to/alligned/file", "", is_bam = TRUE)
-cat("Output saved to:", result_bam, "\n")
-# Example usage with a Bismark BAM file
-result_bismark_bam <- run_CGMapTools("path/to/bismark_aligned_reads.bam", "path/to/output_dir", is_bam = TRUE, is_bismark = TRUE)
-cat("Output saved to:", result_bismark_bam, "\n")
-# Example usage with a CGmap file
-result_cgmap <- run_CGMapTools("/rds/projects/c/catonim-easyte/sarah.thesis/data/cgmaptools_test", "/rds/projects/c/catonim-easyte/sarah.thesis/results/cgmaptools_outputs")
-cat("Output saved to:", result_cgmap, "\n")
+# Define the paths to the input files and directories
+input_bam_file <- "path/to/input/file"
+output_directory <- "path/to/output/directory"
+cgmaptools_dir <- "path/to/cgmaptools/on/local/drive"
+genome_file <- "path/to/reference/fasta/file"
+
+# Run the CGmapTools conversion
+cgmap_file <- run_CGMapTools(
+  input_file = input_bam_file,
+  output_dir = output_directory,
+  cgmaptools_dir = cgmaptools_dir,
+  genome_file = genome_file
+)
+
+# Print the path to the generated CGmap file
+cat("CGmap file created at:", cgmap_file, "\n
+
 ```
 
 # Dependencies
