@@ -4,7 +4,7 @@
 
 ## Overview
 
-**WGBSWorkflow** provides a comprehensive pipeline for handling WGBS data, including read trimming, alignment, and SNP calling. This package is tailored for researchers in epigenetics and genomics, offering a seamless workflow for processing WGBS data and generating high-quality results.
+**WGBSWorkflow** provides a comprehensive pipeline for handling WGBS data, including read trimming, alignment, and SNP calling. This package is tailored for researchers in epigenetics and genomics, offering a workflow for processing WGBS data and generating high-quality results.
 
 **WGBSWorkflow** provides an integrated solution for processing WGBS data. The package includes functions to:
 
@@ -84,7 +84,7 @@ bismark_dir: Path to the Bismark installation directory.
 bowtie2_dir: Path to the Bowtie2 directory.
 
 run_cgmaptools()
-Convets BAM, generated from previous Bismark or CGMap files and produces the vcf file for epignetic analysis. 
+Convets BAM, generated from previous Bismark or CGMap files and produces the file for epignetic analysis. 
 
 # Usage
 ```r
@@ -105,6 +105,39 @@ cgmap_file <- run_CGMapTools(
 # Print the path to the generated CGmap file
 cat("CGmap file created at:", cgmap_file, "\n
 
+```
+run_pipeline
+Run's the entire pipeline from trimming to conversion.
+# Usage 
+```r
+# Example usage of the run_pipeline function
+
+# Define the paths to the input files and directories
+input_fastq <- "path/to/input/fastq/file"
+output_fastq_dir <- "path/to/output/directory"
+output_bismark_dir <- "path/to/bismark/on/local/drive"
+output_cgmap_dir <- "path/to/output/directory"
+genome_folder <- "path/to/reference/genome"
+bismark_dir <- "path/to/bismark/on/local/drive"
+bowtie2_dir <- "path/to/bowtie2/on/local/drive"
+cgmaptools_dir <- "path/to/cgmaptools/on/local/drive"
+genome_file <- "path/to/reference/file/for/cgmaptools"
+
+# Run the full pipeline
+cgmap_file <- run_pipeline(
+  input_fastq = input_fastq,
+  output_fastq_dir = output_fastq_dir,
+  output_bismark_dir = output_bismark_dir,
+  output_cgmap_dir = output_cgmap_dir,
+  genome_folder = genome_folder,
+  bismark_dir = bismark_dir,
+  bowtie2_dir = bowtie2_dir,
+  cgmaptools_dir = cgmaptools_dir,
+  genome_file = genome_file
+)
+
+# Output the final CGmap file path
+cat("Final CGmap file created at:", cgmap_file, "\n")
 ```
 
 # Dependencies
